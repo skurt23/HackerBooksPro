@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AnnotationViewController" customModule="HackerBooksLite" customModuleProvider="target">
+            <connections>
+                <outlet property="deleteButton" destination="E50-NC-0iC" id="9ri-Pt-bQv"/>
+                <outlet property="flexible" destination="KTu-uN-fNB" id="jbX-4L-cTx"/>
+                <outlet property="textView" destination="pOp-r1-NrQ" id="WT2-ni-8If"/>
+                <outlet property="titleView" destination="viA-yV-1sh" id="FlQ-GM-Mx4"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qux-CW-f83">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="oEA-va-WF5"/>
+                    </constraints>
+                    <items>
+                        <barButtonItem title="Map" id="F72-ko-iAQ">
+                            <connections>
+                                <action selector="Map:" destination="-1" id="PNI-1h-7x1"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Ouf-ve-7J2"/>
+                        <barButtonItem systemItem="trash" id="E50-NC-0iC">
+                            <connections>
+                                <action selector="deleteNote:" destination="-1" id="sar-tJ-jBn"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="KTu-uN-fNB"/>
+                        <barButtonItem systemItem="camera" id="lsS-GM-qhD">
+                            <connections>
+                                <action selector="takePhoto:" destination="-1" id="OwD-b5-fVD"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Title here.." borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="viA-yV-1sh">
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Título" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gv2-lc-xvu">
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Texto:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIZ-np-gbQ">
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Text here..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pOp-r1-NrQ">
+                    <frame key="frameInset" minY="231" width="375" height="392"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Gv2-lc-xvu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="166" id="2pW-Oo-g6m"/>
+                <constraint firstItem="viA-yV-1sh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="9fC-ES-6E5"/>
+                <constraint firstItem="TIZ-np-gbQ" firstAttribute="top" secondItem="viA-yV-1sh" secondAttribute="bottom" constant="20" id="Ah3-xh-Y2k"/>
+                <constraint firstAttribute="trailing" secondItem="Gv2-lc-xvu" secondAttribute="trailing" constant="165" id="J1h-wC-mWO"/>
+                <constraint firstAttribute="bottom" secondItem="qux-CW-f83" secondAttribute="bottom" id="J6X-bX-SYx"/>
+                <constraint firstItem="Gv2-lc-xvu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="123" id="VEp-NS-q0H"/>
+                <constraint firstItem="viA-yV-1sh" firstAttribute="top" secondItem="Gv2-lc-xvu" secondAttribute="bottom" constant="8" id="bgg-BJ-njO"/>
+                <constraint firstItem="TIZ-np-gbQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="165" id="e7V-y4-XWS"/>
+                <constraint firstAttribute="trailing" secondItem="viA-yV-1sh" secondAttribute="trailing" constant="16" id="mLm-Od-AgP"/>
+                <constraint firstAttribute="trailing" secondItem="TIZ-np-gbQ" secondAttribute="trailing" constant="163" id="t9M-th-fE2"/>
+                <constraint firstAttribute="trailing" secondItem="qux-CW-f83" secondAttribute="trailing" id="tIf-cv-otL"/>
+                <constraint firstItem="qux-CW-f83" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="vQv-J1-Asq"/>
+            </constraints>
+            <point key="canvasLocation" x="33.5" y="54.5"/>
+        </view>
+    </objects>
+</document>
