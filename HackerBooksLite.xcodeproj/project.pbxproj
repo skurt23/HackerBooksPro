@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA23BC281DA526E200FA46DC /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA23BC271DA526E200FA46DC /* UIImage.swift */; };
 		BA3A47E51D9E431900DDFDBC /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3A47E31D9E431900DDFDBC /* BookViewController.swift */; };
 		BA3A47E61D9E431900DDFDBC /* BookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA3A47E41D9E431900DDFDBC /* BookViewController.xib */; };
 		BA3A47E81D9E433500DDFDBC /* AnnotationsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3A47E71D9E433500DDFDBC /* AnnotationsCollectionViewController.swift */; };
@@ -22,6 +23,8 @@
 		BA3CEB891DA1853D0053C047 /* PhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA3CEB871DA1853D0053C047 /* PhotoViewController.xib */; };
 		BA4539621D9AF7CC007C0B0A /* BooksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4539611D9AF7CC007C0B0A /* BooksTableViewController.swift */; };
 		BA4539641D9B054A007C0B0A /* Controllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4539631D9B054A007C0B0A /* Controllers.swift */; };
+		BA8AFC811DA4110D007DF0EB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8AFC7F1DA4110D007DF0EB /* MapViewController.swift */; };
+		BA8AFC821DA4110D007DF0EB /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA8AFC801DA4110D007DF0EB /* MapViewController.xib */; };
 		BA965B2F1D9A64FC0095756B /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA965B2D1D9A64FC0095756B /* Realm.framework */; };
 		BA965B301D9A64FC0095756B /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BA965B2D1D9A64FC0095756B /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BA965B311D9A64FC0095756B /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA965B2E1D9A64FC0095756B /* RealmSwift.framework */; };
@@ -61,6 +64,48 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		BAE865111DA511A900E3289B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BAE865081DA511A900E3289B /* Gzip.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2AE050881D4A2C070040E4C9;
+			remoteInfo = "Gzip macOS";
+		};
+		BAE865131DA511A900E3289B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BAE865081DA511A900E3289B /* Gzip.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2AE050991D4A2DC30040E4C9;
+			remoteInfo = "Gzip iOS";
+		};
+		BAE865151DA511A900E3289B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BAE865081DA511A900E3289B /* Gzip.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2A321EE71D4A6138002B0245;
+			remoteInfo = "Gzip watchOS";
+		};
+		BAE865171DA511A900E3289B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BAE865081DA511A900E3289B /* Gzip.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2A321F071D4A635F002B0245;
+			remoteInfo = "Gzip tvOS";
+		};
+		BAE865191DA511A900E3289B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BAE865081DA511A900E3289B /* Gzip.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2A58A7571B00F414005FBBC2;
+			remoteInfo = "Tests macOS";
+		};
+		BAE8651B1DA511A900E3289B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BAE865081DA511A900E3289B /* Gzip.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2A58A77D1B00FBEF005FBBC2;
+			remoteInfo = "Tests iOS";
+		};
 		ED8E54141D359AB100DD8F94 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ED8E53F51D359AB100DD8F94 /* Project object */;
@@ -93,6 +138,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BA23BC271DA526E200FA46DC /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		BA3A47E31D9E431900DDFDBC /* BookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
 		BA3A47E41D9E431900DDFDBC /* BookViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookViewController.xib; sourceTree = "<group>"; };
 		BA3A47E71D9E433500DDFDBC /* AnnotationsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationsCollectionViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +154,8 @@
 		BA3CEB871DA1853D0053C047 /* PhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoViewController.xib; sourceTree = "<group>"; };
 		BA4539611D9AF7CC007C0B0A /* BooksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooksTableViewController.swift; sourceTree = "<group>"; };
 		BA4539631D9B054A007C0B0A /* Controllers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controllers.swift; sourceTree = "<group>"; };
+		BA8AFC7F1DA4110D007DF0EB /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		BA8AFC801DA4110D007DF0EB /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		BA965B2D1D9A64FC0095756B /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../Realm/Realm.framework; sourceTree = "<group>"; };
 		BA965B2E1D9A64FC0095756B /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../Realm/RealmSwift.framework; sourceTree = "<group>"; };
 		BA965B341D9A68A70095756B /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
@@ -116,6 +164,9 @@
 		BAAACE721DA131CC005A6050 /* NoteCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteCollectionViewCell.xib; sourceTree = "<group>"; };
 		BAC28BCC1D9D986600138792 /* BookTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookTableViewCell.swift; sourceTree = "<group>"; };
 		BAC28BCD1D9D986600138792 /* BookTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookTableViewCell.xib; sourceTree = "<group>"; };
+		BAE865081DA511A900E3289B /* Gzip.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Gzip.xcodeproj; path = "../../../../../Downloads/GzipSwift-master/Gzip.xcodeproj"; sourceTree = "<group>"; };
+		BAE8651D1DA512E400E3289B /* Gzip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Gzip.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Gzip-dhxdalckereifwdjhetdccksbjrs/Build/Products/Debug-iphonesimulator/Gzip.framework"; sourceTree = "<group>"; };
+		BAE8651F1DA5131000E3289B /* Gzip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Gzip.framework; sourceTree = "<group>"; };
 		BAE994AC1D9ACE310078F910 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		BAE994AE1D9ACE3D0078F910 /* Annotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
 		BAE994B01D9ACE470078F910 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -179,8 +230,32 @@
 			children = (
 				BA4539631D9B054A007C0B0A /* Controllers.swift */,
 				BA3CB7F31D9C3FC600FA7C6D /* String.swift */,
+				BA23BC271DA526E200FA46DC /* UIImage.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		BAE865071DA511A800E3289B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BAE8651F1DA5131000E3289B /* Gzip.framework */,
+				BAE8651D1DA512E400E3289B /* Gzip.framework */,
+				BAE865081DA511A900E3289B /* Gzip.xcodeproj */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BAE865091DA511A900E3289B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BAE865121DA511A900E3289B /* Gzip.framework */,
+				BAE865141DA511A900E3289B /* Gzip.framework */,
+				BAE865161DA511A900E3289B /* Gzip.framework */,
+				BAE865181DA511A900E3289B /* Gzip.framework */,
+				BAE8651A1DA511A900E3289B /* Tests macOS.xctest */,
+				BAE8651C1DA511A900E3289B /* Tests iOS.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		ED4908A21D5D02BA00212410 /* Model */ = {
@@ -206,6 +281,7 @@
 				ED8E54161D359AB100DD8F94 /* HackerBooksLiteTests */,
 				ED8E54211D359AB100DD8F94 /* HackerBooksLiteUITests */,
 				ED8E53FE1D359AB100DD8F94 /* Products */,
+				BAE865071DA511A800E3289B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -267,6 +343,8 @@
 				BA3CEB811DA184A60053C047 /* PdfViewController.xib */,
 				BA3CEB861DA1853D0053C047 /* PhotoViewController.swift */,
 				BA3CEB871DA1853D0053C047 /* PhotoViewController.xib */,
+				BA8AFC7F1DA4110D007DF0EB /* MapViewController.swift */,
+				BA8AFC801DA4110D007DF0EB /* MapViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -444,6 +522,12 @@
 			mainGroup = ED8E53F41D359AB100DD8F94;
 			productRefGroup = ED8E53FE1D359AB100DD8F94 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = BAE865091DA511A900E3289B /* Products */;
+					ProjectRef = BAE865081DA511A900E3289B /* Gzip.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				ED8E53FC1D359AB100DD8F94 /* HackerBooksLite */,
@@ -452,6 +536,51 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		BAE865121DA511A900E3289B /* Gzip.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Gzip.framework;
+			remoteRef = BAE865111DA511A900E3289B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BAE865141DA511A900E3289B /* Gzip.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Gzip.framework;
+			remoteRef = BAE865131DA511A900E3289B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BAE865161DA511A900E3289B /* Gzip.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Gzip.framework;
+			remoteRef = BAE865151DA511A900E3289B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BAE865181DA511A900E3289B /* Gzip.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Gzip.framework;
+			remoteRef = BAE865171DA511A900E3289B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BAE8651A1DA511A900E3289B /* Tests macOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Tests macOS.xctest";
+			remoteRef = BAE865191DA511A900E3289B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BAE8651C1DA511A900E3289B /* Tests iOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Tests iOS.xctest";
+			remoteRef = BAE8651B1DA511A900E3289B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		ED8E53FB1D359AB100DD8F94 /* Resources */ = {
@@ -471,6 +600,7 @@
 				BA3A47E61D9E431900DDFDBC /* BookViewController.xib in Resources */,
 				ED8E540A1D359AB100DD8F94 /* Assets.xcassets in Resources */,
 				BA3CB7F81D9C407C00FA7C6D /* PresentationViewController.xib in Resources */,
+				BA8AFC821DA4110D007DF0EB /* MapViewController.xib in Resources */,
 				EDB3AE761D68048D0023A807 /* emptyBookCover.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -512,6 +642,7 @@
 				BAE994BB1D9ADA7F0078F910 /* JsonProcessings.swift in Sources */,
 				BA4539641D9B054A007C0B0A /* Controllers.swift in Sources */,
 				ED8E54011D359AB100DD8F94 /* AppDelegate.swift in Sources */,
+				BA8AFC811DA4110D007DF0EB /* MapViewController.swift in Sources */,
 				BA3CEB881DA1853D0053C047 /* PhotoViewController.swift in Sources */,
 				BAE994AF1D9ACE3D0078F910 /* Annotation.swift in Sources */,
 				BA3A47E81D9E433500DDFDBC /* AnnotationsCollectionViewController.swift in Sources */,
@@ -519,6 +650,7 @@
 				BA3CB7F71D9C407C00FA7C6D /* PresentationViewController.swift in Sources */,
 				BA3CEB821DA184A60053C047 /* PdfViewController.swift in Sources */,
 				BA3A47E51D9E431900DDFDBC /* BookViewController.swift in Sources */,
+				BA23BC281DA526E200FA46DC /* UIImage.swift in Sources */,
 				BA3A47EB1D9E434F00DDFDBC /* AnnotationViewController.swift in Sources */,
 				BAC28BCE1D9D986600138792 /* BookTableViewCell.swift in Sources */,
 				BA4539621D9AF7CC007C0B0A /* BooksTableViewController.swift in Sources */,
@@ -670,6 +802,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Realm",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = HackerBooksLite/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -687,6 +820,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Realm",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = HackerBooksLite/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

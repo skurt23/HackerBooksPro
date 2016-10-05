@@ -9,22 +9,39 @@
 import UIKit
 import Realm
 import RealmSwift
+import MapKit
 
-class AnnotationViewController: UIViewController {
+class AnnotationViewController: UIViewController,  CLLocationManagerDelegate{
     
     private
     var _book: Book
     var _note : Annotation?
     var deleteAnnotation: Bool = false
+    
+    let locationManager = CLLocationManager()
+    var location: Location = Location()
 
     
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var titleView: UITextField!
     @IBOutlet weak var flexible: UIBarButtonItem!
     @IBOutlet weak var deleteButton: UIBarButtonItem!
+    @IBOutlet weak var mapButton: UIBarButtonItem!
     @IBAction func Map(_ sender: AnyObject) {
+        let vc = MapViewController(note: _note)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     @IBAction func takePhoto(_ sender: AnyObject) {
+        if _note != nil {
+            let vc = PhotoViewController(note: _note!)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            let note = Annotation()
+            let noteVC = PhotoViewController(note: note)
+            self.navigationController?.pushViewController(noteVC, animated: true)
+        }
+        
+        
     }
    
     @IBAction func deleteNote(_ sender: AnyObject) {
@@ -55,6 +72,8 @@ class AnnotationViewController: UIViewController {
             let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(AnnotationViewController.cancelNote))
             
             self.navigationItem.rightBarButtonItem = cancelButton
+            self.mapButton.isEnabled = false
+            self.mapButton.tintColor = UIColor.clear
             self.deleteButton.isEnabled = false
             self.deleteButton.tintColor = UIColor.clear
             
@@ -71,8 +90,22 @@ class AnnotationViewController: UIViewController {
         }
     }
     
+    override func viewDidLoad() {
+        
+        self.locationManager.requestAlwaysAuthorization()
+        
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
+        
         if !deleteAnnotation {
             if (_note != nil){
                 try! Realm().write {
@@ -85,7 +118,8 @@ class AnnotationViewController: UIViewController {
                     let newNote = Annotation()
                     newNote.title = titleView.text!
                     newNote.text = textView.text
-                    _note?.modificationDate = Date()
+                    newNote.modificationDate = Date()
+                    newNote.location = location
                     try! Realm().add(newNote)
                     _book.notes.append(newNote)
                 }
@@ -95,7 +129,6 @@ class AnnotationViewController: UIViewController {
             try! Realm().write {
                 try! Realm().delete(_note!)
             }
-            
         }
     }
 
@@ -113,5 +146,16 @@ class AnnotationViewController: UIViewController {
         let vc = UIActivityViewController(activityItems: [titleView.text, textView.text], applicationActivities: [])
         vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         present(vc, animated: true)
+    }
+    
+    //CLLocationManagerDelegate
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        try! Realm().write {
+            self.location.latitude = locValue.latitude
+            self.location.longitude = locValue.longitude
+            try! Realm().add(location)
+        }
+        
     }
 }

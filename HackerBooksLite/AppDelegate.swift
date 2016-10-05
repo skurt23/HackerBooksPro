@@ -27,8 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         if launchedBefore  {
-            tags = try! Realm().objects(Tag.self).sorted(byProperty: "name")
-            let realm = Realm.Configuration.defaultConfiguration.fileURL
+            tags = try! Realm().objects(Tag.self).sorted(by: [SortDescriptor(property: "favorites", ascending: false), "name"])
             let vc = BooksTableViewController(tags: tags!, style: .plain)
             self.window?.rootViewController = vc.wrappedInNavigationController()
             self.window?.makeKeyAndVisible()
@@ -58,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
                    
                         
                     DispatchQueue.main.asyncAfter(deadline: .now() + 6.0) {
-                        tags = try! Realm().objects(Tag.self).sorted(byProperty: "name")
+                        tags = try! Realm().objects(Tag.self).sorted(by: [SortDescriptor(property: "favorites", ascending: false), "name"])
                         let vc = BooksTableViewController(tags: tags!, style: .plain)
                         self.window?.rootViewController = vc.wrappedInNavigationController()
                         self.window?.makeKeyAndVisible()

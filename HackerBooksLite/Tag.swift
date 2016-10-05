@@ -12,5 +12,6 @@ import RealmSwift
 class Tag: Object {
     
     dynamic var name = ""
+    dynamic var favorites = false
     let books = LinkingObjects(fromType: Book.self, property: "tags")
 }

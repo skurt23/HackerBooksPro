@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PhotoViewController" customModule="HackerBooksLite" customModuleProvider="target">
             <connections>
+                <outlet property="photoView" destination="Yrm-WY-4au" id="Wo9-32-Lt8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,7 +16,45 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sHv-pW-1yg">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="B3L-P4-481"/>
+                    </constraints>
+                    <items>
+                        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="95D-Mz-MVg"/>
+                        <barButtonItem systemItem="camera" id="fql-Ug-raf">
+                            <connections>
+                                <action selector="takePhoto:" destination="-1" id="aQo-2L-oKK"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem width="193" style="plain" systemItem="fixedSpace" id="gnK-LA-bto"/>
+                        <barButtonItem systemItem="trash" id="wnQ-Cp-3t7">
+                            <connections>
+                                <action selector="deletePhoto:" destination="-1" id="Qen-i7-QvJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="Yrm-WY-4au">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="573" id="sYR-1K-Pe8"/>
+                    </constraints>
+                </imageView>
+            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Yrm-WY-4au" secondAttribute="trailing" id="05b-Am-fyd"/>
+                <constraint firstItem="Yrm-WY-4au" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="23L-Ms-jUw"/>
+                <constraint firstItem="Yrm-WY-4au" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="50" id="K3g-Ff-LZX"/>
+                <constraint firstItem="sHv-pW-1yg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="LpS-Ri-MDZ"/>
+                <constraint firstAttribute="bottom" secondItem="sHv-pW-1yg" secondAttribute="bottom" id="bq8-GI-mUS"/>
+                <constraint firstAttribute="trailing" secondItem="sHv-pW-1yg" secondAttribute="trailing" id="p06-7G-l9a"/>
+            </constraints>
+            <point key="canvasLocation" x="33.5" y="54.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="noImage.png" width="285" height="174"/>
+    </resources>
 </document>

@@ -17,7 +17,8 @@ class BooksTableViewController: UITableViewController {
     var notificationToken: NotificationToken?
     var _tagsResult: TagResult
     let searchController = UISearchController(searchResultsController: nil)
-    var searchResults = try! Realm().objects(Tag.self)
+    var booksResults = try! Realm().objects(Book.self)
+    var favoriteTag = try! Realm().objects(Tag.self).filter("name == 'Favoritos'")
     
     
     //MARK: - Init & Lifecycle
@@ -39,6 +40,12 @@ class BooksTableViewController: UITableViewController {
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
         registerNib()
+        let center = NotificationCenter.default
+        center.addObserver(self, selector: #selector(reloadTags), name: NSNotification.Name(rawValue: tagsDidChange), object: nil)
+        
+        
+        
+        
         
         // Set results notification block
         self.notificationToken = _tagsResult.addNotificationBlock { (changes: RealmCollectionChange) in
@@ -61,10 +68,21 @@ class BooksTableViewController: UITableViewController {
                 break
             }
         }
+        self.tableView.reloadData()
     }
     
-    // UI
-    
+    //MARK: - Notification handlers
+    func reloadTags(notification: NSNotification){
+        
+        let info = notification.userInfo!
+        let tags = info[key] as? Results<Tag>
+        
+        _tagsResult = tags!
+        
+        tableView.reloadData()
+        
+    }
+        
     //MARK: - Cell registration
     private func registerNib(){
         
@@ -77,21 +95,21 @@ class BooksTableViewController: UITableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         if searchController.isActive && searchController.searchBar.text != "" {
-            return searchResults.count
+            return 1
         }
         return _tagsResult.count
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if searchController.isActive && searchController.searchBar.text != "" {
-            return searchResults[section].name.capitalizingFirstLetter()
+            return "Resultados"
         }
         return _tagsResult[section].name.capitalizingFirstLetter()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchController.isActive && searchController.searchBar.text != "" {
-           return searchResults[section].books.count
+           return booksResults.count
         }
         return _tagsResult[section].books.count
     }
@@ -103,8 +121,7 @@ class BooksTableViewController: UITableViewController {
         let objects = _tagsResult[indexPath.section].books.sorted(byProperty: "title")
         var object = Book()
         if searchController.isActive && searchController.searchBar.text != "" {
-            let search = searchResults[indexPath.section].books.sorted(byProperty: "title")
-            object = search[indexPath.row]
+            object = booksResults[indexPath.row]//search[indexPath.row]
         }else{
             object = objects[indexPath.row]
             
@@ -134,8 +151,7 @@ class BooksTableViewController: UITableViewController {
         let objects = _tagsResult[indexPath.section].books.sorted(byProperty: "title")
         var object = Book()
         if searchController.isActive && searchController.searchBar.text != "" {
-            let search = searchResults[indexPath.section].books.sorted(byProperty: "title")
-            object = search[indexPath.row]
+            object = booksResults[indexPath.row]//search[indexPath.row]
         }else{
             object = objects[indexPath.row]
         }
@@ -145,11 +161,12 @@ class BooksTableViewController: UITableViewController {
     }
     
     func filterResultsWithSearchString(searchString: String) {
-        let predicate = NSPredicate(format: "ANY books.title CONTAINS[c] %@", searchString) // 1
-        _ = searchController.searchBar.selectedScopeButtonIndex // 2
+
+        let predicateTwo = NSPredicate(format: "title BEGINSWITH[c] %@", searchString)
+        _ = searchController.searchBar.selectedScopeButtonIndex
         let realm = try! Realm()
-        searchResults = realm.objects(Tag.self).filter(predicate) // 5
-        
+        booksResults = realm.objects(Book.self).filter(predicateTwo)
+       
         tableView.reloadData()
         
     }

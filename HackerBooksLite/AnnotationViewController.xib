@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="deleteButton" destination="E50-NC-0iC" id="9ri-Pt-bQv"/>
                 <outlet property="flexible" destination="KTu-uN-fNB" id="jbX-4L-cTx"/>
+                <outlet property="mapButton" destination="F72-ko-iAQ" id="Mzz-y1-shu"/>
                 <outlet property="textView" destination="pOp-r1-NrQ" id="WT2-ni-8If"/>
                 <outlet property="titleView" destination="viA-yV-1sh" id="FlQ-GM-Mx4"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

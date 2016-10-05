@@ -25,7 +25,6 @@ class Book: Object {
     override static func indexedProperties() -> [String] {
         return ["title", "authors", "isFavorite"]
     }
-    
 }
 
 

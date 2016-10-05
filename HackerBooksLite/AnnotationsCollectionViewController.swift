@@ -14,12 +14,17 @@ private let reuseIdentifier = "Cell"
 
 class AnnotationsCollectionViewController: UICollectionViewController {
     
+    var notificationToken: NotificationToken? = nil
+    
     typealias NotesResults = Results<Annotation>
     private
     var _book: Book
     
+    var results = try!Realm().objects(Book.self)
+    
     init(book: Book) {
-        _book = book
+        results = results.filter("title == '" + book.title! + "'")
+        _book = results[0]
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -39,8 +44,38 @@ class AnnotationsCollectionViewController: UICollectionViewController {
         super.viewWillAppear(true)
         
         registerNib()
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(AnnotationsCollectionViewController.addNote))
+        
+        // Observe Notifications
+        notificationToken = results.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
+            guard let collectionView = self?.collectionView else { return }
+            switch changes {
+            case .initial(_):
+                // Results are now populated and can be accessed without blocking the UI
+                collectionView.reloadData()
+                break
+            case .update(_, deletions: let deletions, insertions: let insertions, modifications: let modifications):
+                // Query results have changed, so apply them to the UITableView
+                collectionView.performBatchUpdates({
+                    collectionView.insertItems(at: insertions.map { IndexPath(row: $0, section: 0) })
+                    collectionView.deleteItems(at: deletions.map { IndexPath(row: $0, section: 0) })
+                    collectionView.reloadItems(at: modifications.map { IndexPath(row: $0, section: 0) })
+                    }, completion: { _ in })
+                break
+            case .error(let error):
+                // An error occurred while opening the Realm file on the background worker thread
+                fatalError("\(error)")
+                break
+            }
+        }
+        
+        self.navigationItem.rightBarButtonItem = addButton
         collectionView?.backgroundColor = UIColor(white: 0.9, alpha: 1)
         collectionView?.reloadData()
+    }
+    
+    deinit {
+        notificationToken?.stop()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,6 +116,12 @@ class AnnotationsCollectionViewController: UICollectionViewController {
         let editNote = _book.notes[indexPath.row]
         let vc = AnnotationViewController(book: _book, note: editNote)
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func addNote(){
+        let vc = AnnotationViewController(book: _book)
+        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
 
 

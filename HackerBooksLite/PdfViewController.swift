@@ -10,10 +10,16 @@ import UIKit
 import Realm
 import RealmSwift
 
+let tagsDidChange = "Adding section"
+let key = "key"
+
 class PdfViewController: UIViewController {
     
     private
     var _book: Book
+    
+    let lastBook = try! Realm().objects(Tag.self).filter("name == 'Último libro leído'")
+    
     
     
     @IBOutlet weak var pdfView: UIWebView!
@@ -29,6 +35,28 @@ class PdfViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         showPdf()
+        
+        if lastBook.count == 0{
+            try! Realm().write {
+                let tag = Tag()
+                tag.name = "Último libro leído"
+                tag.favorites = true
+                try! Realm().add(tag)
+                _book.tags.append(tag)
+                
+            }
+        }else{
+            try! Realm().write {
+                try! Realm().delete(lastBook[0])
+                let tag = Tag()
+                tag.name = "Último libro leído"
+                tag.favorites = true
+                try! Realm().add(tag)
+                _book.tags.append(tag)
+                
+            }
+        }
+        
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(PdfViewController.addNote))
         

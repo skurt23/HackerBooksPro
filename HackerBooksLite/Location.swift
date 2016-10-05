@@ -12,6 +12,6 @@ import RealmSwift
 class Location: Object {
     
     dynamic var address = ""
-    dynamic var latittude = 0.000
+    dynamic var latitude = 0.000
     dynamic var longitude = 0.000
 }
