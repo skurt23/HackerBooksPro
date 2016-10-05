@@ -11,6 +11,8 @@ import Realm
 import RealmSwift
 
 typealias TagResult = Results<Tag>
+let bookKey = "Book"
+let BookDidChangeNotification = "BookDidChange"
 
 class BooksTableViewController: UITableViewController {
 
@@ -40,12 +42,7 @@ class BooksTableViewController: UITableViewController {
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
         registerNib()
-        let center = NotificationCenter.default
-        center.addObserver(self, selector: #selector(reloadTags), name: NSNotification.Name(rawValue: tagsDidChange), object: nil)
-        
-        
-        
-        
+        self.tableView.reloadData()
         
         // Set results notification block
         self.notificationToken = _tagsResult.addNotificationBlock { (changes: RealmCollectionChange) in
@@ -68,18 +65,6 @@ class BooksTableViewController: UITableViewController {
                 break
             }
         }
-        self.tableView.reloadData()
-    }
-    
-    //MARK: - Notification handlers
-    func reloadTags(notification: NSNotification){
-        
-        let info = notification.userInfo!
-        let tags = info[key] as? Results<Tag>
-        
-        _tagsResult = tags!
-        
-        tableView.reloadData()
         
     }
         
@@ -156,8 +141,15 @@ class BooksTableViewController: UITableViewController {
             object = objects[indexPath.row]
         }
         
-        let vc = BookViewController(book: object)
-        self.navigationController?.pushViewController(vc, animated: true)
+        if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.phone{
+            let vc = BookViewController(book: object)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
+            let nc = NotificationCenter.default
+            let notif = Notification(name: NSNotification.Name(rawValue: BookDidChangeNotification), object: self, userInfo: [bookKey:object])
+            nc.post(notif)
+        }
+        
     }
     
     func filterResultsWithSearchString(searchString: String) {

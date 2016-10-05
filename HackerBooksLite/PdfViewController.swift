@@ -10,9 +10,6 @@ import UIKit
 import Realm
 import RealmSwift
 
-let tagsDidChange = "Adding section"
-let key = "key"
-
 class PdfViewController: UIViewController {
     
     private
@@ -60,18 +57,17 @@ class PdfViewController: UIViewController {
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(PdfViewController.addNote))
         
+        let center = NotificationCenter.default
+        center.addObserver(self, selector: #selector(bookDidChange), name: Notification.Name(rawValue: BookDidChangeNotification), object: nil)
+        
         self.navigationItem.rightBarButtonItem = addButton
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        
+        let center = NotificationCenter.default
+        center.removeObserver(self)
     }
     
     func showPdf() {
@@ -93,6 +89,21 @@ class PdfViewController: UIViewController {
     func addNote(){
         let vc = AnnotationViewController(book: _book)
         self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
+    //MARK - Notification handlers
+    
+    func bookDidChange(notification: NSNotification)  {
+        
+        let info = notification.userInfo!
+        let book = info[bookKey] as? Book
+        
+        // Actualizar el modelo
+        _book = book!
+        
+        // Sincronizar las vistas
+        showPdf()
         
     }
     

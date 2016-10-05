@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         var tags: Results<Tag>?
+        var book: Results<Book>?
         
         // Create the window
         window = UIWindow.init(frame: UIScreen.main.bounds)
@@ -28,8 +29,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         if launchedBefore  {
             tags = try! Realm().objects(Tag.self).sorted(by: [SortDescriptor(property: "favorites", ascending: false), "name"])
+            book = try! Realm().objects(Book.self).sorted(byProperty: "title")
             let vc = BooksTableViewController(tags: tags!, style: .plain)
-            self.window?.rootViewController = vc.wrappedInNavigationController()
+            let detailVC = BookViewController(book: (book?[0])!)
+            if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.phone {
+                self.window?.rootViewController = vc.wrappedInNavigationController()
+            }else if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
+                let splitVC = UISplitViewController()
+                splitVC.viewControllers = [vc.wrappedInNavigationController(), detailVC.wrappedInNavigationController()]
+                self.window?.rootViewController = splitVC
+            }
+            
             self.window?.makeKeyAndVisible()
             
         }
@@ -58,8 +68,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
                         
                     DispatchQueue.main.asyncAfter(deadline: .now() + 6.0) {
                         tags = try! Realm().objects(Tag.self).sorted(by: [SortDescriptor(property: "favorites", ascending: false), "name"])
+                        book = try! Realm().objects(Book.self).sorted(byProperty: "title")
                         let vc = BooksTableViewController(tags: tags!, style: .plain)
-                        self.window?.rootViewController = vc.wrappedInNavigationController()
+                        
+                        let detailVC = BookViewController(book: (book?[0])!)
+                        if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.phone {
+                            self.window?.rootViewController = vc.wrappedInNavigationController()
+                        }else if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
+                            let splitVC = UISplitViewController()
+                            splitVC.viewControllers = [vc.wrappedInNavigationController(), detailVC.wrappedInNavigationController()]
+                            self.window?.rootViewController = splitVC
+                        }
                         self.window?.makeKeyAndVisible()
                     }
                     

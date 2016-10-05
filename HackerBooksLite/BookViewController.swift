@@ -49,19 +49,20 @@ class BookViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        let center = NotificationCenter.default
+        center.addObserver(self, selector: #selector(bookDidChange), name: Notification.Name(rawValue: BookDidChangeNotification), object: nil)
         
         syncWithBook()
-
-        // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        
+        let center = NotificationCenter.default
+        center.removeObserver(self)
     }
     
     func syncWithBook() {
@@ -91,6 +92,20 @@ class BookViewController: UIViewController {
         
     }
     
+    //MARK - Notification handlers
+    
+    func bookDidChange(notification: NSNotification)  {
+        
+        let info = notification.userInfo!
+        let book = info[bookKey] as? Book
+        
+        // Actualizar el modelo
+        _book = book!
+        
+        // Sincronizar las vistas
+        syncWithBook()
+        
+    }
 
 
 }

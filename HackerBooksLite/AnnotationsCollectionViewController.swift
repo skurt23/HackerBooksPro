@@ -44,6 +44,8 @@ class AnnotationsCollectionViewController: UICollectionViewController {
         super.viewWillAppear(true)
         
         registerNib()
+        let center = NotificationCenter.default
+        center.addObserver(self, selector: #selector(bookDidChange), name: Notification.Name(rawValue: BookDidChangeNotification), object: nil)
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(AnnotationsCollectionViewController.addNote))
         
         // Observe Notifications
@@ -76,6 +78,13 @@ class AnnotationsCollectionViewController: UICollectionViewController {
     
     deinit {
         notificationToken?.stop()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        
+        let center = NotificationCenter.default
+        center.removeObserver(self)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -121,6 +130,21 @@ class AnnotationsCollectionViewController: UICollectionViewController {
     func addNote(){
         let vc = AnnotationViewController(book: _book)
         self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
+    //MARK - Notification handlers
+    
+    func bookDidChange(notification: NSNotification)  {
+        
+        let info = notification.userInfo!
+        let book = info[bookKey] as? Book
+        
+        // Actualizar el modelo
+        _book = book!
+        
+        // Sincronizar las vistas
+        collectionView?.reloadData()
         
     }
 
